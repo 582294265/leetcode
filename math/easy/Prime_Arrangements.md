@@ -85,7 +85,7 @@ class Solution:
     }
 ```
 ## 自己算法的改进
-<改进之处在于求素数个数利用了厄拉多塞筛法
+改进之处在于求素数个数利用了厄拉多塞筛法
 ```
 class Solution:
     def numPrimeArrangements(self, n: int) -> int:
