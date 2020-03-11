@@ -32,26 +32,49 @@ A.length == 4
 ```
 
 ## 自己的第一遍解法
+**思考许久的题目（一小时）**
 ```
-难未做出！！！思考了50分钟。
+class Solution:
+    def largestTimeFromDigits(self, A) -> str:
+        def permutation(end, li, l):
+            if 0 == end:
+                l.append(li.copy())
+            else:
+                for i in range(0, end + 1):
+                    temp = li[i]
+                    li[i] = li[end]
+                    li[end] = temp
+                    permutation(end - 1, li, l)
+                    temp = li[i]
+                    li[i] = li[end]
+                    li[end] = temp
+        length = len(A)
+        l = []
+        permutation(length - 1, A, l)
+        max = -1
+        for i in l:
+            if i[0] <= 2 and i[2] <= 5:
+                hour = i[0] * 10 + i[1]
+                minute = i[2] * 10 + i[3]
+                if hour <= 23 and minute <= 59:
+                    sum = hour * 60 + minute
+                    max = sum if max < sum else max
+        return "{:02}:{:02}".format(max // 60, max % 60) if max >= 0 else ''
 ```
 
 ## 网上好的解法
 
-* 主要注意两个break的用法！
+**主要是itertools.permutations这个函数不知道
 ```
-class Solution {
-    public List<Integer> powerfulIntegers(int x, int y, int bound) {
-        Set<Integer> set = new HashSet<>();
-        
-        for (int a = 1; a < bound; a *= x) {
-            for (int b = 1; a + b <= bound; b *= y) {
-                set.add(a + b);
-                if (y == 1) break;
-            }
-            if (x == 1) break;
-        }
-        
-        return new ArrayList<>(set);
-    }
-}
+class Solution(object):
+    def largestTimeFromDigits(self, A):
+        ans = -1
+        for h1, h2, m1, m2 in itertools.permutations(A):
+            hours = 10 * h1 + h2
+            mins = 10 * m1 + m2
+            time = 60 * hours + mins
+            if 0 <= hours < 24 and 0 <= mins < 60 and time > ans:
+                ans = time
+
+        return "{:02}:{:02}".format(*divmod(ans, 60)) if ans >= 0 else ""
+```
