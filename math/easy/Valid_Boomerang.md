@@ -65,9 +65,7 @@ class Solution {
 }
 ```
 
-**
-方法二，在我方法上进行了改进 b/a=d/c为了不考虑 a和c是否为0 ，利用是否ad=bc！
-**
+**方法二，在我方法上进行了改进 b/a=d/c为了不考虑 a和c是否为0 ，利用是否ad=bc！**
 
 ```
 bool isBoomerang(int** points, int pointsSize, int* pointsColSize){
