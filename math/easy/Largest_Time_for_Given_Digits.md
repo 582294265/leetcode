@@ -64,7 +64,7 @@ class Solution:
 
 ## 网上好的解法
 
-**主要是itertools.permutations这个函数不知道
+**主要是itertools.permutations这个函数不知道**
 ```
 class Solution(object):
     def largestTimeFromDigits(self, A):
