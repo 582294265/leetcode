@@ -32,4 +32,10 @@ Explanation: There are three ways to climb to the top.
 ## 自己的第一遍解法
 > 未解答出
 ## 网上好的解法
-[爬楼图](https://leetcode-cn.com/problems/climbing-stairs/)
+[爬楼题解答六种方式都要会！](https://leetcode-cn.com/problems/climbing-stairs/)
+## 收获（此题好好研究收获很大）
+* n &1 如果结果为1说明是奇数，如果是0则是偶数 
+* 快速求幂方法要掌握 [基础的快速求幂方法教学]（https://www.jianshu.com/p/25eba927d9da）
+* 斐波那契数列可以求个表达式，利用你组合数学学过母函数方法（重要）!
+* 递归树，如果有相同重复的部分，可以添加个temp数组，用于记录，就如方式二一样
+
