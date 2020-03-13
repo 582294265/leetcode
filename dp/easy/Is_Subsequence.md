@@ -32,36 +32,65 @@ Special thanks to @pbrother for adding this problem and creating all test cases.
 ## 自己的第一遍解法
 ```
 class Solution:
-    def powerfulIntegers(self, x: int, y: int, bound: int) -> List[int]: 
-        s=set()
-        for i in range(0,20):
-            a=x**i
-            if(a>bound):
-                break;
-            for j in range(0,20):
-                b=y**j
-                if (a+b<=bound):
-                    s.add(a+b)
-        return s 
+    def isSubsequence(self, s: str, t: str) -> bool:
+        i=0;
+        for c  in t:
+            if i>=len(s):
+                return True
+            if s[i]==c:
+                i+=1
+        if i>=len(s):
+            return True
+        return False          
+  
 ```
 
 ## 网上好的解法
 
-* 主要注意两个break的用法！
+* 利用python3的切片！
+```
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        for i in s:
+            if t and i in t:
+                flag = t.index(i)
+                t = t[flag+1:]
+            else:
+                return False
+        return True
+
+
+```
+## 本题主要是思考如何处理很长的字符串T
+* 其实很多字符串的问题都可以用桶完成
 ```
 class Solution {
-    public List<Integer> powerfulIntegers(int x, int y, int bound) {
-        Set<Integer> set = new HashSet<>();
-        
-        for (int a = 1; a < bound; a *= x) {
-            for (int b = 1; a + b <= bound; b *= y) {
-                set.add(a + b);
-                if (y == 1) break;
-            }
-            if (x == 1) break;
-        }
-        
-        return new ArrayList<>(set);
-    }
-}
+public:
+	bool isSubsequence(string s, string t) {
+		t.insert(t.begin(), ' ');
+		int len1 = s.size(), len2 = t.size();
+		
+		vector<vector<int> > dp(len2 , vector<int>(26, 0));
+
+		for (char c = 'a'; c <= 'z'; c++) {
+			int nextPos = -1; //表示接下来再不会出现该字符
+
+			for (int i = len2 - 1; i>= 0; i--) {  //为了获得下一个字符的位置，要从后往前
+				dp[i][c - 'a'] = nextPos;
+				if (t[i] == c)
+					nextPos = i;
+			}
+		}
+
+		int index = 0;
+		for (char c : s) {
+			index = dp[index][c - 'a'];
+			if (index == -1)
+				return false;
+		}
+		return true;
+
+	}
+};
+
 ```
