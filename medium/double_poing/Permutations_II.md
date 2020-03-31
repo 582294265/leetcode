@@ -20,7 +20,7 @@ https://leetcode-cn.com/problems/permutations-ii/
 ```
 
 ## 自己的第一遍解法
-* 没有通过反例 01009
+* 没有通过反例 01009  ,原因是换来换去的递归过程中，后半部分不连续了
 ```
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
